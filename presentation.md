@@ -382,4 +382,4 @@ Eдиное сетевое пространство вне зависимост�
 
 https://github.com/Antiarchitect/k8s-introduction
 
-![center width:500px](./images/qr.png)
+![w:500px](./images/qr.png)
