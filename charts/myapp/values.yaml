@@ -1,0 +1,28 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 3
+
+image:
+  repository: "python"
+  # This sets the pull policy for images.
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "3.13.3-alpine3.21"
+
+appPort: 6666
+servicePort: 8080
+message: "<h1>Hi, folks!</h1>"
+
+podAnnotations: {}
+podLabels: {}
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
