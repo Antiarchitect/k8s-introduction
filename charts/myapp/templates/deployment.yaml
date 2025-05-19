@@ -11,15 +11,9 @@ spec:
       {{- include "myapp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
         {{- include "myapp.labels" . | nindent 8 }}
-        {{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+        is-it-myapp: "true"
     spec:
       containers:
         - name: webapp
@@ -28,7 +22,6 @@ spec:
           command:
             - "sh"
             - "-c"
-            # - "echo 'HIHI!' > index.html && python -m http.server {{ .Values.appPort }}"
             - "echo '{{ .Values.message }}' > index.html && python -m http.server {{ .Values.appPort }}"
           ports:
             - name: http

@@ -1,7 +1,7 @@
 nameOverride: ""
 fullnameOverride: ""
 
-replicaCount: 3
+replicaCount: 1
 
 image:
   repository: "python"
@@ -13,9 +13,6 @@ image:
 appPort: 6666
 servicePort: 8080
 message: "<h1>Hi, folks!</h1>"
-
-podAnnotations: {}
-podLabels: {}
 
 livenessProbe:
   httpGet:
