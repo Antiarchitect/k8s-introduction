@@ -11,6 +11,8 @@ spec:
       {{- include "myapp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        checksum/cm: {{ include (print $.Template.BasePath "/config-map.yaml") . | sha256sum }}
       labels:
         {{- include "myapp.labels" . | nindent 8 }}
         is-it-myapp: "true"
@@ -22,11 +24,15 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "echo '{{ .Values.message }}' > index.html && python -m http.server {{ .Values.appPort }}"
+            # - "echo '{{ .Values.message }}' > index.html && python -m http.server {{ .Values.appPort }}"
+            - "python -m http.server {{ .Values.appPort }} --dir /tmp/www-data"
           ports:
             - name: http
               containerPort: {{ .Values.appPort }}
               protocol: TCP
+          volumeMounts:
+            - name: www-data
+              mountPath: /tmp/www-data
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
@@ -35,3 +41,7 @@ spec:
           readinessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      volumes:
+        - name: www-data
+          configMap:
+            name: {{ include "myapp.fullname" . }}
