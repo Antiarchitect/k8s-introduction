@@ -6,8 +6,13 @@ metadata:
     {{- include "myapp.labels" . | nindent 4 }}
 data:
   index.html: |-
-    <h1>
-    Hello World!
-    <br>
-    HIHI all!
-    </h2>
+    <head>
+      <meta charset="UTF-8">
+    </head>
+    <body>
+      <h1>
+      Hello World!
+      <br>
+      Всем привет!
+      </h2>
+    </body>

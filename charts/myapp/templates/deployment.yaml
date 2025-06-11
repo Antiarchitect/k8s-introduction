@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/cm: {{ include (print $.Template.BasePath "/config-map.yaml") . | sha256sum }}
+        checksum/cm: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         {{- include "myapp.labels" . | nindent 8 }}
         is-it-myapp: "true"
