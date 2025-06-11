@@ -12,7 +12,6 @@ image:
 
 appPort: 6666
 servicePort: 8080
-message: "<h1>Hi, folks!</h1>"
 
 livenessProbe:
   httpGet:
